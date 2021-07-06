@@ -6,33 +6,33 @@ let stopBtn = document.getElementById('stop');
 let reset = document.getElementById('reset');
 let beep = document.querySelector('audio');
 
-let i = 0;
-let j = 0;
-let k = 25; 
-//load set time 
+let seconds = 0;
+let tenthSeconds = 0;
+let minutes = 25; 
+
 
 let swap = true;
-//true = 25min, false = 5mins
+
 
 let goGo;
 let clock = false;
-//clock controls pause and start buttons
+
 
 function run() {
     goGo = setInterval(countDown, 1000);
-    //since clearInterval deletes goGo, this resets goGo value
+  
 
     clock = true;
-} //time counts down
+}
 
 function halt() {
     clearInterval(goGo);
     clock = false;
-} //time stops
+}
 
 function alarm() {
     beep.play();
-} //beeps
+} 
 
 function stopAlarm() {
     beep.pause();
@@ -43,65 +43,65 @@ function stopAlarm() {
         resting();
     }
     
-} //beep stops, automatically swaps from working to resting
+} 
 
 function countDown() {
-    if(i == 0) {
+    if(seconds == 0) {
         moveTime();
-        time.innerText =  k + ':' + j + i;
-    } else if (i == 1) {
-        i = 0;
-        time.innerText = k + ':' + j + i;
+        time.innerText =  minutes + ':' + tenthSeconds + seconds;
+    } else if (seconds == 1) {
+        seconds = 0;
+        time.innerText = minutes + ':' + tenthSeconds + seconds;
     } else {
-        i --;
-        time.innerText = k + ':' + j + i;
+        seconds --;
+        time.innerText = minutes + ':' + tenthSeconds + seconds;
     }
-} //second functionality
+} 
 
 function moveTime() {
-    if( j == 0 && k == 0 && i == 0) {
+    if( tenthSeconds == 0 && minutes == 0 && seconds == 0) {
         stopBtn.innerText = "Stop";
         alarm();
 
-    } else if(i == 0){
+    } else if(seconds == 0){
 
-        if(j == 0 && k == 0){
-            j = 0;
-        } else if(j == 0){
-            j = 5;
+        if(tenthSeconds == 0 && minutes == 0){
+            tenthSeconds = 0;
+        } else if(tenthSeconds == 0){
+            tenthSeconds = 5;
         } else {
-           j --; 
+           tenthSeconds --; 
         }
         
-        if(j == 5){
-            if(k > 0){
-               k--; 
+        if(tenthSeconds == 5){
+            if(minutes > 0){
+               minutes--; 
             } else {
-                k = 0;
+                minutes = 0;
             }
         }
 
-        i = 9;
+        seconds = 9;
     }
-} //boolean for time changes
+}
 
 function working() {
     time.innerText = "25:00";
-    i = 0;
-    j = 0;
-    k = 25;
+    seconds = 0;
+    tenthSeconds = 0;
+    minutes = 25;
     swap = true;
     halt();
-} //reset to 25 mins
+}
 
 function resting() {
     time.innerText = "5:00";
-    i = 0;
-    j = 0;
-    k = 5;
+    seconds = 0;
+    tenthSeconds = 0;
+    minutes = 5;
     swap = false;
     halt();
-} //reset to 5 mins
+} 
 
 work.addEventListener('click', () => {
     working();
@@ -112,7 +112,7 @@ rest.addEventListener('click', () => {
 })
 
 stopBtn.addEventListener('click', () => {
-    if( j == 0 && k == 0 && i == 0) {
+    if( tenthSeconds == 0 && minutes == 0 && seconds == 0) {
         stopAlarm();
         stopBtn.innerText = "Pause";
     } else if (clock === true) {
