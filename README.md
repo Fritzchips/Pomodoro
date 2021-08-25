@@ -27,7 +27,7 @@ Set Timer with Work and Rest
 
 ## Summary
 
-My first project in Software Development Mastery Program to develop a strong balance between studying and learning. This project helped me practice basic JavaScript functionality and start my process in writing clean code.
+My first project in Software Development Mastery Program to develop a strong balance between studying and resting. This project helped me practice basic JavaScript functionality and start my process in writing clean code.
 
 ## Author
 
